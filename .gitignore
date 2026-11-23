@@ -1,0 +1,10 @@
+web/vendor/
+web/models/
+android/app/src/main/assets/www/
+android/.gradle/
+android/app/build/
+android/build/
+desktop/www/
+desktop/node_modules/
+desktop/dist/
+node_modules/

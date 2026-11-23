@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SwapStudio Video</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>SwapStudio <span>Video</span></h1>
+  <div id="engine" class="pill">Loading engine…</div>
+</header>
+
+<p class="notice">Only use faces of people who have agreed to it. Output is labelled "AI face swap" by default.</p>
+
+<main>
+  <section class="panel">
+    <h2><b>1</b> Source face</h2>
+    <p class="hint">A clear, front-facing photo of the face you want to put in.</p>
+    <label class="btn file">Choose photo<input id="srcFile" type="file" accept="image/*"></label>
+    <div class="thumbrow">
+      <img id="srcImg" alt="" hidden>
+      <span id="srcStatus" class="status">No face loaded</span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><b>2</b> Target video (or photo)</h2>
+    <label class="btn file">Choose video / photo<input id="tgtFile" type="file" accept="video/*,image/*"></label>
+    <span id="tgtStatus" class="status">Nothing loaded</span>
+  </section>
+
+  <section class="panel stage">
+    <canvas id="out"></canvas>
+    <div id="placeholder">Preview appears here</div>
+    <div class="progress" hidden id="progWrap"><div id="prog"></div></div>
+    <div class="row controls">
+      <button id="btnPreview" class="btn" disabled>▶ Preview</button>
+      <button id="btnRender" class="btn primary" disabled>⏺ Render &amp; save</button>
+      <button id="btnStop" class="btn" disabled>■ Stop</button>
+      <span id="fps" class="status"></span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><b>3</b> Settings</h2>
+    <div class="grid">
+      <label>Faces to replace
+        <select id="optFaces">
+          <option value="largest">Largest face only</option>
+          <option value="all">All faces</option>
+        </select>
+      </label>
+      <label>Max resolution
+        <select id="optRes">
+          <option value="720">720p (fast)</option>
+          <option value="1080" selected>1080p</option>
+          <option value="4096">Original</option>
+        </select>
+      </label>
+      <label>Strength <output id="vOpacity">100%</output>
+        <input id="optOpacity" type="range" min="30" max="100" value="100">
+      </label>
+      <label>Edge softness <output id="vFeather">2</output>
+        <input id="optFeather" type="range" min="1" max="5" value="2">
+      </label>
+      <label>Stabilise jitter <output id="vSmooth">40%</output>
+        <input id="optSmooth" type="range" min="0" max="85" value="40">
+      </label>
+      <label class="check"><input id="optColor" type="checkbox" checked> Match skin colour</label>
+      <label class="check"><input id="optMouth" type="checkbox" checked> Keep target's mouth opening</label>
+      <label class="check"><input id="optEyes" type="checkbox"> Keep target's eyes (natural blinking)</label>
+      <label class="check"><input id="optLabel" type="checkbox" checked> "AI face swap" label on output</label>
+    </div>
+  </section>
+</main>
+
+<video id="vid" playsinline crossorigin="anonymous" hidden></video>
+<img id="tgtImg" alt="" hidden>
+<script type="module" src="app.js"></script>
+</body>
+</html>

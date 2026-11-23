@@ -1,0 +1,40 @@
+{
+  "name": "swapstudio-video",
+  "version": "1.0.0",
+  "description": "Offline video face swap",
+  "author": "SwapStudio",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable --publish never"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.swapstudio.video",
+    "productName": "SwapStudio Video",
+    "files": [
+      "main.js",
+      "www/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "SwapStudioVideo-${version}.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SwapStudio Video",
+      "artifactName": "SwapStudioVideo-Setup-${version}.exe"
+    }
+  }
+}
